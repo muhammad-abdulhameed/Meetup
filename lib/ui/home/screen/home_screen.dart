@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/core/appMangers/imageManger.dart';
 import 'package:evently/core/appMangers/stringsManger.dart';
+import 'package:evently/core/providers/locationProvider.dart';
 import 'package:evently/ui/creatEvent/screen/createEvent_Screen.dart';
 import 'package:evently/ui/home/taps/home/homeTap.dart';
 import 'package:evently/ui/home/taps/love/loveTap.dart';
@@ -27,6 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget>taps=[
     HomeTap(),
     MapTap(),
+    /*ChangeNotifierProvider(create: (context) => LocationProvider()..getLocation(),
+        child: MapTap()),*/
     LoveTap(),
     ProfileTap()
   ];

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/core/appStyle.dart';
 import 'package:evently/core/providers/eventProvider.dart';
+import 'package:evently/core/providers/locationProvider.dart';
 import 'package:evently/core/providers/themeProvider.dart';
 import 'package:evently/core/providers/userDataProvider.dart';
 import 'package:evently/core/themePref/themePref.dart';
@@ -68,9 +69,18 @@ localizationsDelegates: context.localizationDelegates,
         RegisterScreen.routeName:(_)=>RegisterScreen(),
        LoginScreen.routeName:(_)=>LoginScreen(),
        ResetPasswordScreen.routeName:(_)=> ResetPasswordScreen(),
-        HomeScreen.routeName:(_)=> ChangeNotifierProvider(create: (context) {
-          return UserDataProvider()..changeUserData();
-        }, child: HomeScreen()),
+        HomeScreen.routeName:(_)=>  ChangeNotifierProvider(
+          create:(context) =>  UserDataProvider()..changeUserData(),
+
+
+
+            child:HomeScreen() ,
+        )
+          /*  ChangeNotifierProvider(create: (context) => LocationProvider()..getLocation(),
+          child: ChangeNotifierProvider(create: (context) {
+            return UserDataProvider()..changeUserData();
+          }, child: HomeScreen()),
+        ),*/,
         OnBoardingScreen.routeName:(_)=>OnBoardingScreen(),
         CreateEvent.routeName:(_)=>CreateEvent(),
         EventDetailsScreen.routeName:(_)=>EventDetailsScreen(),

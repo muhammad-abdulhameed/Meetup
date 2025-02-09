@@ -32,4 +32,5 @@ class ImageManger{
   static String titleFieldIcon="assets/images/Note_Edit.svg";
   static String deleteIcon="assets/images/deleteIcon.svg";
   static String editIcon="assets/images/editIcon.svg";
+  static String loveIcon="assets/images/loveIcon.svg";
 }

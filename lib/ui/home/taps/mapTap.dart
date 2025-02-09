@@ -10,14 +10,19 @@ class MapTap extends StatefulWidget {
 }
 
 class _MapTapState extends State<MapTap> {
-late LocationProvider locationProvider;
+
 @override
   void initState() {
   super.initState();
-  locationProvider=Provider.of<LocationProvider>(context,listen: false);
+
+
   }
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+/*  LocationProvider  locationProvider=Provider.of<LocationProvider>(context,);
+  locationProvider.getLocation();*/
+    return Scaffold(
+      body: Center(child: Text(/*locationProvider.locationMassage??*/""),),
+    );
   }
 }

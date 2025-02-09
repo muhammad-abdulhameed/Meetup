@@ -33,7 +33,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    print("/////////////////////////////////////${FirebaseAuth.instance.currentUser?.uid}");
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       eventModal=ModalRoute.of(context)?.settings.arguments as EventObj ;
       setState(() {
@@ -58,7 +58,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
         .of(context)
         .size
         .height;
-    return Scaffold(
+    return eventModal==null?CircularProgressIndicator() : Scaffold(
       appBar: AppBar(
         title: Text("Edit Event"),
         actions: [
@@ -119,6 +119,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                         Padding(padding: EdgeInsets.only(left: 10),
                           child: Column(
                             children: [
+
                               Text(
                                 DateFormat.yMMMd()
                                     .format(eventModal!.date?.toDate() ?? DateTime(2025)),

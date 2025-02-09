@@ -1,3 +1,4 @@
+import 'package:evently/core/appMangers/colorsManger.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -34,7 +35,7 @@ class DialogUtils{
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 5,
-        backgroundColor: Colors.red,
+        backgroundColor: ColorManger.lightSecondary,
         textColor: Colors.black54,
         fontSize: 20.0
     );

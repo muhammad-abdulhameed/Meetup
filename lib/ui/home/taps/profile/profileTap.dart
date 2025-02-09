@@ -3,6 +3,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/core/appMangers/imageManger.dart';
 import 'package:evently/core/appMangers/stringsManger.dart';
+import 'package:evently/core/constants/firebase/firebaseHandeler.dart';
 import 'package:evently/core/providers/themeProvider.dart';
 import 'package:evently/core/providers/userDataProvider.dart';
 import 'package:evently/ui/home/taps/profile/widgets/bottomSheetLocal.dart';
@@ -143,6 +144,7 @@ class _ProfileTapState extends State<ProfileTap> {
               style: ElevatedButtonTheme.of(context).style?.copyWith(backgroundColor: MaterialStatePropertyAll(Colors.red)),
               onPressed: () async{
                 await FirebaseAuth.instance.signOut();
+  await FirebaseHandler.signOutFromGoogle();
                 Navigator.of(context).pushNamedAndRemoveUntil(LoginScreen.routeName, (route) => false);
                 setState(() {
 

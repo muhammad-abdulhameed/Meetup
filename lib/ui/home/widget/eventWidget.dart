@@ -12,11 +12,16 @@ import 'package:provider/provider.dart';
 
 import '../../../core/constants/objects/eventObj.dart';
 
-class EventWidget extends StatelessWidget {
+class EventWidget extends StatefulWidget {
   EventWidget({super.key, required this.eventObj});
 
   EventObj? eventObj;
 
+  @override
+  State<EventWidget> createState() => _EventWidgetState();
+}
+
+class _EventWidgetState extends State<EventWidget> {
   @override
   Widget build(BuildContext context) {
 UserDataProvider userData=Provider.of<UserDataProvider>(context);
@@ -45,12 +50,12 @@ List<String>favoriteList =userData.User?.favorite??[];
               children: [
                 Text(
                   DateFormat.d()
-                      .format(eventObj!.date?.toDate() ?? DateTime(2025)),
+                      .format(widget.eventObj!.date?.toDate() ?? DateTime(2025)),
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Text(
                     DateFormat.MMM()
-                        .format(eventObj!.date?.toDate() ?? DateTime(2025)),
+                        .format(widget.eventObj!.date?.toDate() ?? DateTime(2025)),
                     style: Theme.of(context).textTheme.bodyLarge)
               ],
             ),
@@ -63,24 +68,28 @@ List<String>favoriteList =userData.User?.favorite??[];
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Expanded(child: Text(eventObj!.title!)),
+                Expanded(child: Text(widget.eventObj!.title!)),
 
                  GestureDetector(
                    onTap: ()async{
-                     if(userData.User!.favorite!.contains(eventObj!.id)){
-                       userData.User!.favorite!.remove(eventObj?.id??"");
-                      await FirebaseHandler.removeFromUSerFavorite(userData.User!.id!,eventObj!);
+
+                     if(userData.User!.favorite!.contains(widget.eventObj!.id)){
+                       userData.User!.favorite!.remove(widget.eventObj?.id??"");
+                      await FirebaseHandler.removeFromUSerFavorite(userData.User!.id!,widget.eventObj!);
                         FirebaseHandler.updateUSerFavorite(FirebaseAuth.instance.currentUser!.uid, favoriteList);
                      }else {
-                       userData.User!.favorite!.add(eventObj?.id??"");
+                       userData.User!.favorite!.add(widget.eventObj?.id??"");
                         FirebaseHandler.updateUSerFavorite(FirebaseAuth.instance.currentUser!.uid, favoriteList);
-                      await FirebaseHandler.addToWishList(eventObj!);
+                      await FirebaseHandler.addToWishList(widget.eventObj!);
                      }
 
+setState(() {
+
+});
                    },
                    child: SvgPicture.asset(
-                     favoriteList.contains(eventObj?.id)?
-                     ImageManger.heartSelected:ImageManger.heartIcon
+                     favoriteList.contains(widget.eventObj?.id)?
+                     ImageManger.loveIcon:ImageManger.heartIcon
                 ),
                  )
               ],
@@ -92,9 +101,9 @@ List<String>favoriteList =userData.User?.favorite??[];
   }
 
   String categoryImage() {
-    if (eventObj!.category == "book") {
+    if (widget.eventObj!.category == "book") {
       return ImageManger.bookCard;
-    } else if (eventObj!.category == "sport") {
+    } else if (widget.eventObj!.category == "sport") {
       return ImageManger.sportCard;
     } else {
       return ImageManger.birthdayCard;

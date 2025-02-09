@@ -244,6 +244,7 @@ class _EditEventState extends State<EditEvent> {
                           if (selectedDate != null && selectedTime != null) {
 
                           await editEvent();
+                              DialogUtils.showToastMassage("Event edited");
 
 
 
@@ -254,7 +255,7 @@ class _EditEventState extends State<EditEvent> {
                         }
                       },
                       child: Text(
-                        "Add Event",
+                        "Edit Event",
                         style: Theme.of(context).textTheme.titleLarge,
                       ))
                 ],

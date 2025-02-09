@@ -136,4 +136,12 @@ class FirebaseHandler {
     await collection.doc(eventId).delete();
 
    }
+   static Future<bool> signOutFromGoogle() async {
+     try {
+       await currentUset.FirebaseAuth.instance.signOut();
+       return true;
+     } on Exception catch (_) {
+       return false;
+     }
+   }
 }
