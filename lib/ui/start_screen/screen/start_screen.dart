@@ -4,6 +4,8 @@ import 'package:evently/core/appMangers/colorsManger.dart';
 import 'package:evently/core/appMangers/imageManger.dart';
 import 'package:evently/core/appMangers/stringsManger.dart';
 import 'package:evently/core/reusableWidgets/customAppbar.dart';
+import 'package:evently/core/reusableWidgets/customElevatedButtom.dart';
+import 'package:evently/ui/register/screen/register_screen.dart';
 import 'package:evently/ui/start_screen/widget/animatedToggleLocal.dart';
 import 'package:evently/ui/start_screen/widget/toggleLocal.dart';
 import 'package:flutter/material.dart';
@@ -33,21 +35,21 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar.defaultAppBar,
-      body: Padding(padding: EdgeInsets.symmetric(horizontal: 16, vertical: 28),
+      body: Padding(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
             Image.asset(ImageManger.startScreen),
         Text(StringManger.personalizeYourExp.tr(), style: Theme
             .of(context)
             .textTheme
             .bodyLarge,),
-        Gap(28),
+        const Gap(28),
         Text(StringManger.startText, style: Theme
             .of(context)
             .textTheme
             .bodyMedium,).tr(),
-        Gap(28),
+        const Gap(28),
         Row(
           children: [
             Expanded(child: Text(StringManger.language.tr(), style: Theme
@@ -56,12 +58,12 @@ class _StartScreenState extends State<StartScreen> {
                 .bodyLarge
                 ?.copyWith(fontWeight: FontWeight.w400),))///copy with use if you want to use same theme with some changes
             , /*LocalToggle(),*/ ///our custom toggle
-            AnimatedToggleLocal(),
+            const AnimatedToggleLocal(),
 
             ],
 
             ),
-              Gap(16),
+              const Gap(16),
               Row(
                 children: [
                   Expanded(child: Text(StringManger.theme.tr(), style: Theme
@@ -69,12 +71,17 @@ class _StartScreenState extends State<StartScreen> {
                       .textTheme
                       .bodyLarge
                       ?.copyWith(fontWeight: FontWeight.w400),)),
-                  AnimatedToggleTheme()
+                  const AnimatedToggleTheme(),
+
+
                 ],
               )///copy with use if you want to use same theme with some changes
               ,
-
-
+Gap(16),
+              Expanded(child: CustomElevatedButton(onPressed: (){
+                Navigator.of(context).pushReplacementNamed(RegisterScreen.routeName);
+              },
+                  elevetadChild: StringManger.start.tr()))
           ],
         ),
       ),

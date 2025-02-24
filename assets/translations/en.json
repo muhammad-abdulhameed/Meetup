@@ -2,6 +2,23 @@
   "ux_text": "Personalize Your Experience",
   "startText": "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
   "language": "Language",
-  "theme": "Theme"
+  "theme": "Theme",
+  "start": "Start",
+  "register": "Register",
+  "name": "Name",
+  "mail": "Mail",
+  "password": "Password",
+  "repassword": "re Password",
+  "creat_accont": "Create Account",
+  "empty_error": "This Field Shouldn't be Null",
+  "login": "Login  ",
+  "already_have_account": "Already Have Account?",
+  "forget_password": "Forget Password",
+  "reset_password": "Reset Password",
+  "welcome": "Welcome Back ✨",
+  "all": "All",
+  "sport":"Sport",
+  "birthday": "BirthDays",
+  "book":"Books"
 
 }
