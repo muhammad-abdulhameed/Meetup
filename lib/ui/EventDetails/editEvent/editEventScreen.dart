@@ -179,8 +179,8 @@ class _EditEventState extends State<EditEvent> {
                           },
                           child: Text(
                               selectedDate == null
-                                  ? editEventModal?.date?.toDate().day.toString()??""
-                                  : selectedDate.toString(),
+                                  ? "${editEventModal?.date?.toDate().day.toString()??""}/${editEventModal?.date?.toDate().month.toString()??""} "
+                                  : "${selectedDate?.day}/${selectedDate?.month}",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
@@ -199,8 +199,8 @@ class _EditEventState extends State<EditEvent> {
                           },
                           child: Text(
                               selectedTime == null
-                                  ? editEventModal?.date?.millisecondsSinceEpoch.toString()??""
-                                  : selectedTime.toString(),
+                                  ? "${editEventModal?.date?.toDate().hour.toString()??""}:${editEventModal?.date?.toDate().minute.toString()??""} "
+                                  :"${selectedTime?.hour}:${selectedTime?.minute} ${selectedTime?.period.name}",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,

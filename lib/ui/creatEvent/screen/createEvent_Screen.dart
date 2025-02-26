@@ -189,7 +189,7 @@ class _CreateEventState extends State<CreateEvent> {
                           child: Text(
                               selectedDate == null
                                   ? "Choose Date"
-                                  : selectedDate.toString(),
+                                  : "${selectedDate?.day}/${selectedDate?.month}",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
@@ -212,7 +212,7 @@ class _CreateEventState extends State<CreateEvent> {
                           child: Text(
                               selectedTime == null
                                   ? "Choose time"
-                                  : selectedTime.toString(),
+                                  : "${selectedTime?.hour}:${selectedTime?.minute} ${selectedTime?.period.name}",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
@@ -262,11 +262,12 @@ class _CreateEventState extends State<CreateEvent> {
                       )),
                   Gap(16),
                   ElevatedButton(
-                      onPressed: () {
+                      onPressed: ()async {
                         if(formKey.currentState!.validate()){
                           if(selectedDate!=null&&selectedTime!=null ){
-                            createEvent();
 
+                           await createEvent();
+                          DialogUtils.showToastMassage("Event Created");
                           }else{
                             DialogUtils.showToastMassage("please select date and time");
                           }
@@ -306,7 +307,8 @@ class _CreateEventState extends State<CreateEvent> {
 
   timePicker() async {
     selectedTime =
-    await showTimePicker(context: context, initialTime: TimeOfDay.now());
+    await showTimePicker(
+        context: context, initialTime: TimeOfDay.now());
     setState(() {});
   }
 
@@ -320,7 +322,7 @@ class _CreateEventState extends State<CreateEvent> {
     }
   }
 
-  createEvent() async {
+ Future createEvent() async {
     mergedDateTime = DateTime(
         selectedDate!.year, selectedDate!.month, selectedDate!.day,
         selectedTime!.hour, selectedTime!.minute);
