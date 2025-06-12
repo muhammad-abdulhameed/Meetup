@@ -1,4 +1,4 @@
-# evently
+# Meetup
 
 A new Flutter project.
 
